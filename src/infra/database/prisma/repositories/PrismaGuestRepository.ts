@@ -32,7 +32,11 @@ export class PrismaGuestRepository implements GuestRepository {
   }
 
   async getAllGuest(): Promise<Guest[]> {
-    return await this.prisma.guest.findMany();
+    return await this.prisma.guest.findMany({
+      where: {
+        deletedAt: null,
+      },
+    });
   }
 
   async create(guest: Guest): Promise<void> {
