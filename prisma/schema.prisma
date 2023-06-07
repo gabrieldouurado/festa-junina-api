@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Guest {
+  id            String    @id
+  name          String
+  peopleQuantity Int
+  foodId        String?
+  createdAt     DateTime  @default(now())
+  deletedAt     DateTime?
+}
+
+model Food {
+  id        String   @id
+  name      String   @unique
+  quantity  Int
+  createdAt DateTime @default(now())
+}
